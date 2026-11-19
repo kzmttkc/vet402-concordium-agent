@@ -1,0 +1,64 @@
+{
+  "name": "vet402 Concordium testnet build",
+  "description": "Concordium testnet build for the Trusted Agents Hackathon. It judges an x402 seller from delivery records paid by keys bound with CIS-8, and a buyer agent settles only on a go verdict.",
+  "url": "https://raw.githubusercontent.com/kzmttkc/vet402-concordium-agent/main/concordium-agent-card.json",
+  "version": "1.0.0",
+  "defaultInputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "authentication": {
+    "schemes": []
+  },
+  "skills": [
+    {
+      "id": "seller-verdict",
+      "name": "Seller verdict",
+      "description": "Returns go, hold, no, or unproven for a seller, based on delivery records from payer keys bound with CIS-8.",
+      "tags": [
+        "x402",
+        "delivery",
+        "verdict"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://docs.concordium.com/a2a-extensions/concordium-badge/v1",
+        "description": "Verified by Concordium badge — on-chain agent identity in a CIS-8004 registry",
+        "required": false,
+        "params": {
+          "tokenAddress": "ccd:4221332d34e1694168c2a0c0b3fd0f27/cis-2:JyP9YVUgrLRC64hDXwZ94",
+          "owner": {
+            "account": "ccd:4221332d34e1694168c2a0c0b3fd0f27:3spmVDgXK75uWBycTY7kPF7XKqdJR9puqvSYyRtU5DAYDuhjSG"
+          },
+          "agentWallet": "ccd:4221332d34e1694168c2a0c0b3fd0f27:3spmVDgXK75uWBycTY7kPF7XKqdJR9puqvSYyRtU5DAYDuhjSG",
+          "contracts": {
+            "cis8004": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0",
+            "cis8": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "verify": "Resolve tokenAddress via CIS-8004 agent_of; confirm owner + status=Active + card SHA-256 == metadata_hash.",
+          "verification": {
+            "service": "Concordium Agent Registry",
+            "verifyUrl": "https://agent-registry-mcp.concordium.com/v1/badge-check/JyP9YVUgrLRC64hDXwZ94",
+            "mcp": "https://agent-registry-mcp.concordium.com/mcp",
+            "docs": "https://docs.concordium.com/en/mainnet/technical-reference/agent-registry/concordium-badge.html"
+          }
+        }
+      }
+    ]
+  },
+  "registrations": [
+    {
+      "agentId": 1268,
+      "agentRegistry": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0"
+    }
+  ]
+}
