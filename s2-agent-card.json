@@ -1,0 +1,70 @@
+{
+  "name": "vet402 S2 testnet seller",
+  "description": "S2 is a seller run by the vet402 operator on Concordium testnet for the Trusted Agents Hackathon. It is not a third-party seller. It sells one x402 resource for 0.01 CCD; the CCD receive account is the owner account below, and its EVM payTo is bound to the same owner with CIS-8.",
+  "url": "https://raw.githubusercontent.com/kzmttkc/vet402-concordium-agent/main/s2-agent-card.json",
+  "version": "1.0.0",
+  "defaultInputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "defaultOutputModes": [
+    "text/markdown",
+    "application/json"
+  ],
+  "authentication": {
+    "schemes": []
+  },
+  "skills": [
+    {
+      "id": "s2-resource",
+      "name": "S2 paid resource",
+      "description": "One x402 exact resource paid with 0.01 CCD on Concordium testnet.",
+      "tags": [
+        "x402",
+        "ccd",
+        "seller",
+        "testnet"
+      ]
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "extensions": [
+      {
+        "uri": "https://docs.concordium.com/a2a-extensions/concordium-badge/v1",
+        "description": "Verified by Concordium badge — on-chain agent identity in a CIS-8004 registry",
+        "required": false,
+        "params": {
+          "tokenAddress": "ccd:4221332d34e1694168c2a0c0b3fd0f27/cis-2:JyP9UTFstzZfieeB7ykmF",
+          "owner": {
+            "account": "ccd:4221332d34e1694168c2a0c0b3fd0f27:4iuMKkWLJSJo2LqKneemPoeNoSeUhTm8RckaXzfZ94De1Bi6Sc"
+          },
+          "agentWallet": "ccd:4221332d34e1694168c2a0c0b3fd0f27:4iuMKkWLJSJo2LqKneemPoeNoSeUhTm8RckaXzfZ94De1Bi6Sc",
+          "contracts": {
+            "cis8004": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0",
+            "cis8": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12801.0"
+          },
+          "services": {
+            "x402EvmPayTo": "0xeaac8808f7c0e2fd27b73a1597b1e4613eb508d9",
+            "x402CcdPayTo": "4iuMKkWLJSJo2LqKneemPoeNoSeUhTm8RckaXzfZ94De1Bi6Sc",
+            "x402ResourcePath": "/s2/resource"
+          },
+          "verify": "Resolve tokenAddress via CIS-8004 agent_of; confirm owner + status=Active + card SHA-256 == metadata_hash.",
+          "verification": {
+            "service": "Concordium Agent Registry",
+            "verifyUrl": "https://agent-registry-mcp.concordium.com/v1/badge-check/JyP9UTFstzZfieeB7ykmF",
+            "mcp": "https://agent-registry-mcp.concordium.com/mcp",
+            "docs": "https://docs.concordium.com/en/mainnet/technical-reference/agent-registry/concordium-badge.html"
+          }
+        }
+      }
+    ]
+  },
+  "registrations": [
+    {
+      "agentId": 1310,
+      "agentRegistry": "ccd:4221332d34e1694168c2a0c0b3fd0f27:12802.0"
+    }
+  ]
+}
